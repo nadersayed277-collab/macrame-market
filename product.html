@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Macrame Market</title>
+<meta name="description" content="Hand-knotted macrame, made to order. Customise the piece and enquire on Instagram.">
+<meta name="theme-color" content="#14110E">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Macrame Market">
+<meta property="og:title" content="Macrame Market">
+<meta property="og:description" content="Hand-knotted macrame, made to order. Customise the piece and enquire on Instagram.">
+<meta property="og:image" content="https://nadersayed277-collab.github.io/macrame-market/images/share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://nadersayed277-collab.github.io/macrame-market/product.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=El+Messiri:wght@400..600&family=Readex+Pro:wght@300..500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .crumb{display:flex;gap:.6rem;font-size:var(--cap);color:var(--fg-2);padding-top:2rem}
+  .crumb a{border-bottom:1px solid transparent;transition:border-color .3s var(--ease)}
+  .crumb a:hover{border-color:var(--accent)}
+  .pd{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(2rem,5vw,5rem);padding-block:2rem var(--sec);align-items:start}
+  .gallery{display:grid;grid-template-columns:72px minmax(0,1fr);gap:1rem;position:sticky;top:90px}
+  .gallery.single{grid-template-columns:minmax(0,1fr)}
+  .thumbs{display:flex;flex-direction:column;gap:.7rem}
+  .thumbs button{width:72px;aspect-ratio:3/4;overflow:hidden;opacity:.55;outline-offset:2px;border:1px solid transparent;transition:opacity .3s var(--ease),border-color .3s var(--ease)}
+  .thumbs button[aria-pressed="true"],.thumbs button:hover{opacity:1;border-color:var(--accent)}
+  .thumbs img{width:100%;height:100%;object-fit:cover}
+  .stage{max-width:520px;width:100%;aspect-ratio:4/5;justify-self:center}
+  .stage img{object-fit:cover}
+  .info{display:flex;flex-direction:column;gap:1.2rem}
+  .info h1{font-family:var(--display);font-weight:400;font-size:clamp(2.2rem,1.5rem + 2.6vw,3.6rem);line-height:1.1;overflow-wrap:break-word;min-width:0}
+  html[lang="ar"] .info h1{font-weight:500;line-height:1.35}
+  .pprice{font-family:'Marcellus','El Messiri',serif;font-size:1.6rem;color:var(--accent)}
+  .pprice.req{font-family:var(--text);font-size:1rem;color:var(--fg-2)}
+  .facts{border-top:1px solid var(--rule-2);margin-top:.4rem}
+  .facts div{display:grid;grid-template-columns:9rem minmax(0,1fr);gap:1.2rem;padding-block:.9rem;border-bottom:1px solid var(--rule)}
+  .facts dt{font-size:var(--cap);color:var(--fg-2);padding-top:.15rem}
+  .facts dd{font-size:1.02rem}
+
+  /* customiser */
+  .custom{margin-top:1rem;padding:clamp(1.25rem,3vw,2rem);background:var(--cotton-2);display:flex;flex-direction:column;gap:1.2rem}
+  .custom h2{font-family:var(--display);font-weight:400;font-size:1.7rem;line-height:1.25}
+  html[lang="ar"] .custom h2{font-weight:500}
+  .custom > p{color:var(--fg-2);font-size:.98rem}
+  .field{display:flex;flex-direction:column;gap:.5rem}
+  .field > span,.field legend{font-size:var(--cap);color:var(--fg-2)}
+  fieldset{border:0;display:flex;flex-direction:column;gap:.5rem}
+  .chips{display:flex;flex-wrap:wrap;gap:.5rem}
+  .chips label{position:relative}
+  .chips input{position:absolute;opacity:0;inset:0}
+  .chips span{display:inline-flex;align-items:center;gap:.5rem;min-height:40px;padding:.3rem .95rem;border:1px solid var(--rule-2);font-size:.92rem;cursor:pointer;transition:background-color .25s var(--ease),border-color .25s var(--ease),color .25s var(--ease)}
+  .chips i{width:14px;height:14px;border:1px solid rgba(0,0,0,.2);flex:none}
+  .chips input:checked + span{background:var(--ink);border-color:var(--ink);color:var(--cotton)}
+  .chips input:focus-visible + span{outline:2px solid var(--accent);outline-offset:2px}
+  .row2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:.8rem}
+  .custom input[type=text],.custom input[type=number],.custom textarea{width:100%;min-height:44px;padding:.6rem .8rem;border:1px solid var(--rule-2);background:var(--cotton);color:var(--ink);font:inherit;font-size:1rem;border-radius:0}
+  .custom textarea{min-height:84px;resize:vertical}
+  .custom input:focus-visible,.custom textarea:focus-visible{outline:2px solid var(--accent);outline-offset:0}
+  .preview{font-size:.9rem;color:var(--fg-2);white-space:pre-line;border-inline-start:2px solid var(--accent);padding-inline-start:.9rem}
+  .custom .btn{align-self:flex-start}
+  .hint{font-size:.85rem;color:var(--fg-2)}
+
+  .more{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(1rem,2vw,1.5rem)}
+  .more a{display:flex;flex-direction:column;gap:.7rem}
+  .more .ph{aspect-ratio:3/4}
+  .more a:hover .ph img{transform:scale(1.04)}
+  .more b{font-family:var(--display);font-weight:400;font-size:1.2rem}
+  html[lang="ar"] .more b{font-weight:500}
+
+  .toast{position:fixed;inset-inline:0;bottom:1.5rem;margin:auto;width:max-content;max-width:calc(100% - 2rem);background:var(--night);color:var(--cotton);padding:.8rem 1.2rem;font-size:.92rem;opacity:0;transform:translateY(10px);transition:opacity .3s var(--ease),transform .3s var(--ease);pointer-events:none;z-index:80}
+  .toast.on{opacity:1;transform:none}
+
+  @media (max-width:900px){
+    .pd{grid-template-columns:minmax(0,1fr)}
+    .gallery{position:static;grid-template-columns:minmax(0,1fr)}
+    .thumbs{flex-direction:row;order:2}
+    .thumbs button{width:64px}
+    .more{grid-template-columns:repeat(2,minmax(0,1fr))}
+  }
+  @media (max-width:520px){.facts div{grid-template-columns:minmax(0,1fr);gap:.2rem}.row2{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="ig" viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 3.3.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8C2.4 3.9 3.9 2.4 7.2 2.3 8.4 2.2 8.8 2.2 12 2.2zm0 4.9a4.9 4.9 0 1 0 0 9.8 4.9 4.9 0 0 0 0-9.8zm0 8.1a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zm5.1-9.5a1.15 1.15 0 1 0 0 2.3 1.15 1.15 0 0 0 0-2.3z"/></symbol>
+</svg>
+
+<header>
+  <div class="bar">
+    <div class="bar-start">
+      <a class="mark" href="index.html" aria-label="Macrame Market"><span>M</span></a>
+      <a class="wordmark" href="index.html">Macrame Market</a>
+      <nav class="menu" aria-label="Main">
+        <a href="index.html#collection" data-t="nav.collection">Collection</a>
+        <a href="index.html#commissions" data-t="nav.custom">Commissions</a>
+        <a href="index.html#ordering" data-t="nav.order">Ordering</a>
+        <a href="index.html#faq" data-t="nav.faq">FAQ</a>
+      </nav>
+    </div>
+    <div class="bar-end">
+      <button class="lang" id="lang" type="button" lang="ar">العربية</button>
+      <a class="btn" href="https://ig.me/m/macrame_markett"><svg width="16" height="16" aria-hidden="true"><use href="#ig"/></svg><span data-t="nav.cta">Enquire</span></a>
+    </div>
+  </div>
+</header>
+
+<main class="light">
+  <div class="wrap">
+    <nav class="crumb" aria-label="Breadcrumb"><a href="index.html#collection" data-t="crumb">Collection</a><span aria-hidden="true">/</span><span id="crumbName"></span></nav>
+    <div class="pd">
+      <div class="gallery" id="gallery">
+        <div class="thumbs" id="thumbs" role="group" aria-label="Photos"></div>
+        <div class="ph stage" id="stage"></div>
+      </div>
+      <div class="info">
+        <span class="cap" id="kicker"></span>
+        <h1 id="name"></h1>
+        <p class="pprice" id="price"></p>
+        <p class="lede" id="desc"></p>
+        <dl class="facts" id="facts"></dl>
+
+        <form class="custom" id="custom" novalidate>
+          <h2 data-t="cz.h">Customise this piece</h2>
+          <p data-t="cz.p">Choose what you would like. We will turn it into a message for you to send us on Instagram.</p>
+          <div id="fields"></div>
+          <label class="field"><span data-t="cz.notes">Anything else we should know</span><textarea id="notes" data-ph="cz.notesPh" placeholder="The room, the occasion, a reference photo you will send"></textarea></label>
+          <p class="preview" id="preview" aria-live="polite"></p>
+          <button class="btn" type="submit"><svg width="16" height="16" aria-hidden="true"><use href="#ig"/></svg><span data-t="cz.send">Copy message and open Instagram</span></button>
+          <p class="hint" data-t="cz.hint">Your message is copied. Paste it in the chat and send it with a photo of your space.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+
+<section class="sec" style="padding-top:clamp(3.5rem,7vw,5.5rem)">
+  <div class="wrap">
+    <div class="sec-head"><span class="cap" data-t="more.cap">Also in the collection</span></div>
+    <div class="more" id="more"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="foot-word">Macrame Market</p>
+    <div class="foot-row">
+      <span data-t="ft.by">Handmade by m&amp;g</span>
+      <a href="https://www.instagram.com/macrame_markett/" dir="ltr">@macrame_markett</a>
+      <span dir="ltr">&copy; 2026 Macrame Market</span>
+    </div>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  var IG = 'https://ig.me/m/macrame_markett';
+  var COLOURS = [
+    { k: 'ivory', en: 'Ivory', ar: 'أوف وايت', c: '#EFE8DA' },
+    { k: 'beige', en: 'Natural beige', ar: 'بيج طبيعي', c: '#D8C3A0' },
+    { k: 'brown', en: 'Brown', ar: 'بني', c: '#8A6845' },
+    { k: 'other', en: 'Another colour', ar: 'لون تاني', c: null }
+  ];
+
+  // Each piece: photos, copy in both languages, and the options the customer can set.
+  var P = {
+    'hanging-chairs': {
+      photos: ['chair', 'custom', 'home-1'],
+      en: { name: 'Hanging chair', kicker: 'Indoor', desc: 'A hand-knotted chair with a deep cushioned seat, for a quiet corner of the bedroom or living room.' },
+      ar: { name: 'كرسي معلق', kicker: 'للداخل', desc: 'كرسي مكرمية مشغول يدويًا بقعدة عميقة ومخدات، لركن هادي في أوضة النوم أو الليفنج.' },
+      facts: [['f.made', 'f.madeV'], ['f.size', 'f.sizeV'], ['f.colour', 'f.colourV'], ['f.hang', 'f.hangV']],
+      opts: ['size', 'colour', 'cushion']
+    },
+    'terrace-swings': {
+      photos: ['terrace', 'hero', 'terrace-3', 'home-2', 'terrace-2'],
+      en: { name: 'Terrace swing', kicker: 'Outdoor', desc: 'A wide hanging bed for the terrace, the chalet or the garden, knotted by hand and finished with a deep fringe.' },
+      ar: { name: 'مرجيحة تراس', kicker: 'للخارج', desc: 'مرجيحة واسعة للتراس أو الشاليه أو الجنينة، مشغولة يدويًا وبأطراف شراشيب طويلة.' },
+      facts: [['f.made', 'f.madeV'], ['f.size', 'f.sizeV'], ['f.colour', 'f.colourV'], ['f.hang', 'f.hangV']],
+      opts: ['size', 'colour', 'cushion', 'beads']
+    },
+    'wall-hangings': {
+      photos: ['wall', 'wall-2'],
+      en: { name: 'Wall hangings and curtains', kicker: 'For the wall', desc: 'Hand-knotted pieces for a wall, a doorway or a window, made to the width and drop you need.' },
+      ar: { name: 'قطع حائط وستاير', kicker: 'للحائط', desc: 'قطع مكرمية مشغولة يدويًا للحيطة أو الباب أو الشباك، بالعرض والطول اللي محتاجهم.' },
+      facts: [['f.made', 'f.madeV'], ['f.size', 'f.sizeWallV'], ['f.colour', 'f.colourV']],
+      opts: ['type', 'dims', 'colour']
+    },
+    'hair-accessory-holder': {
+      photos: ['holder', 'holder-2'], price: 350, focus: '50% 0%',
+      en: { name: 'Hair accessory holder', kicker: 'For her room', desc: 'A wall holder for clips and bows, with two long braids and a wooden face, personalised with her name.' },
+      ar: { name: 'حامل إكسسوارات الشعر', kicker: 'لأوضة البنت', desc: 'حامل حائط للتوك والفيونكات، بضفيرتين طوال ووش خشب، وعليه اسم بنتك.' },
+      facts: [['f.made', 'f.madeV'], ['f.name', 'f.nameV'], ['f.colour', 'f.colourHolderV']],
+      opts: ['design', 'name', 'braid']
+    },
+    'jute-rugs': {
+      photos: ['rug', 'rug-2'],
+      en: { name: 'Jute rug', kicker: 'For the floor', desc: 'A round rug in hand-coiled jute, with a scalloped edge of small coils.' },
+      ar: { name: 'سجادة جوت', kicker: 'للأرضية', desc: 'سجادة مدورة من الجوت الملفوف يدويًا، بحافة من دواير صغيرة.' },
+      facts: [['f.made', 'f.madeRugV'], ['f.size', 'f.sizeRugV']],
+      opts: ['diameter']
+    }
+  };
+  var ORDER = ['hanging-chairs', 'terrace-swings', 'wall-hangings', 'hair-accessory-holder', 'jute-rugs'];
+
+  var T = {
+    en: {
+      'nav.collection': 'Collection', 'nav.custom': 'Commissions', 'nav.order': 'Ordering', 'nav.faq': 'FAQ', 'nav.cta': 'Enquire',
+      crumb: 'Collection', req: 'Price on request, depending on size', egp: 'EGP',
+      'f.made': 'Making', 'f.madeV': 'Knotted by hand, made after you order', 'f.madeRugV': 'Coiled by hand, made after you order',
+      'f.size': 'Size', 'f.sizeV': 'Made to your space', 'f.sizeWallV': 'Width and drop to your measurements', 'f.sizeRugV': 'Diameter of your choice',
+      'f.colour': 'Colour', 'f.colourV': 'The cord colour you choose', 'f.colourHolderV': 'Braid colour of your choice',
+      'f.hang': 'Hanging', 'f.hangV': 'Tell us the ceiling or beam it will hang from',
+      'f.name': 'Name', 'f.nameV': 'Her name on the face or the board',
+      'cz.h': 'Customise this piece', 'cz.p': 'Choose what you would like. We will turn it into a message for you to send us on Instagram.',
+      'cz.notes': 'Anything else we should know', 'cz.notesPh': 'The room, the occasion, a reference photo you will send',
+      'cz.send': 'Copy message and open Instagram', 'cz.hint': 'Your message is copied. Paste it in the chat and send it with a photo of your space.',
+      'o.size': 'Size', 'o.sizeStd': 'Standard', 'o.sizeCustom': 'Custom size', 'o.w': 'Width (cm)', 'o.h': 'Height (cm)',
+      'o.colour': 'Cord colour', 'o.cushion': 'Cushion colour', 'o.cushionPh': 'Lilac, grey, red, or to match a sofa',
+      'o.beads': 'Coloured beads on the ropes', 'o.yes': 'Yes', 'o.no': 'No',
+      'o.type': 'Piece', 'o.wall': 'Wall hanging', 'o.curtain': 'Curtain or divider', 'o.dims': 'Measurements',
+      'o.name': 'Her name', 'o.namePh': 'Nour', 'o.braid': 'Braid colour', 'o.braidPh': 'Lilac, pink, beige',
+      'o.diameter': 'Diameter (cm)', 'o.design': 'Design', 'o.braids': 'Braids with a wooden face', 'o.board': 'Name board for headbands',
+      'msg.hi': 'Hello Macrame Market, I would like to order:', 'msg.notes': 'Notes',
+      'toast.ok': 'Message copied. Paste it in the Instagram chat.', 'toast.fail': 'Opening Instagram. Copy the message above into the chat.',
+      'more.cap': 'Also in the collection', 'ft.by': 'Handmade by m&g'
+    },
+    ar: {
+      'nav.collection': 'المجموعة', 'nav.custom': 'تصميم خاص', 'nav.order': 'الطلب', 'nav.faq': 'أسئلة شائعة', 'nav.cta': 'استفسر',
+      crumb: 'المجموعة', req: 'السعر حسب المقاس، استفسر عليه', egp: 'جنيه',
+      'f.made': 'التنفيذ', 'f.madeV': 'شغل يدوي، بيتنفذ بعد الطلب', 'f.madeRugV': 'ملفوف يدويًا، بيتنفذ بعد الطلب',
+      'f.size': 'المقاس', 'f.sizeV': 'حسب مساحتك', 'f.sizeWallV': 'العرض والطول حسب مقاساتك', 'f.sizeRugV': 'القطر اللي تختاره',
+      'f.colour': 'اللون', 'f.colourV': 'لون الحبل اللي تختاره', 'f.colourHolderV': 'لون الضفاير اللي تختاره',
+      'f.hang': 'التعليق', 'f.hangV': 'قولنا هتتعلق في سقف ولا كمرة',
+      'f.name': 'الاسم', 'f.nameV': 'اسم بنتك على الوش أو اللوحة',
+      'cz.h': 'صمم القطعة على ذوقك', 'cz.p': 'اختار اللي يناسبك، وإحنا هنحوله لرسالة تبعتهالنا على انستجرام.',
+      'cz.notes': 'أي تفاصيل تانية', 'cz.notesPh': 'الأوضة، المناسبة، أو صورة هتبعتها كمرجع',
+      'cz.send': 'انسخ الرسالة وافتح انستجرام', 'cz.hint': 'الرسالة هتتنسخ. الصقها في الشات وابعتها مع صورة المكان.',
+      'o.size': 'المقاس', 'o.sizeStd': 'المقاس العادي', 'o.sizeCustom': 'مقاس خاص', 'o.w': 'العرض (سم)', 'o.h': 'الطول (سم)',
+      'o.colour': 'لون الحبل', 'o.cushion': 'لون المخدات', 'o.cushionPh': 'موف، رمادي، أحمر، أو على لون الكنبة',
+      'o.beads': 'خرز ملون على الحبال', 'o.yes': 'أيوه', 'o.no': 'لأ',
+      'o.type': 'القطعة', 'o.wall': 'قطعة حائط', 'o.curtain': 'ستارة أو فاصل', 'o.dims': 'المقاسات',
+      'o.name': 'اسم البنت', 'o.namePh': 'نور', 'o.braid': 'لون الضفاير', 'o.braidPh': 'موف، بينك، بيج',
+      'o.diameter': 'القطر (سم)', 'o.design': 'التصميم', 'o.braids': 'ضفاير بوش خشب', 'o.board': 'لوحة باسم للبندانات',
+      'msg.hi': 'أهلًا Macrame Market، حابب أطلب:', 'msg.notes': 'ملاحظات',
+      'toast.ok': 'الرسالة اتنسخت. الصقها في شات انستجرام.', 'toast.fail': 'بنفتح انستجرام. انسخ الرسالة اللي فوق وابعتها.',
+      'more.cap': 'من نفس المجموعة', 'ft.by': 'شغل يدوي من m&g'
+    }
+  };
+
+  var slug = new URLSearchParams(location.search).get('p');
+  if (!P[slug]) slug = ORDER[0];
+  var item = P[slug];
+  var lang = 'en';
+  var html = document.documentElement;
+  var $ = function (s) { return document.querySelector(s); };
+  var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+  var t = function (k) { return T[lang][k] || k; };
+
+  // Remember what the customer filled in, so switching language keeps it.
+  var state = { size: 'std', colour: 'ivory', beads: 'no', type: 'wall', design: 'braids' };
+
+  function chips(name, list) {
+    return '<div class="chips">' + list.map(function (o) {
+      return '<label><input type="radio" name="' + name + '" value="' + o.v + '"' + (state[name] === o.v ? ' checked' : '') + '><span>' + (o.c ? '<i style="background:' + o.c + '"></i>' : '') + esc(o.l) + '</span></label>';
+    }).join('') + '</div>';
+  }
+  function input(id, label, type, ph) {
+    return '<label class="field"><span>' + esc(label) + '</span><input id="' + id + '" type="' + type + '"' + (type === 'number' ? ' inputmode="numeric" min="1"' : '') + ' value="' + esc(state[id] || '') + '" placeholder="' + esc(ph || '') + '"></label>';
+  }
+
+  function buildFields() {
+    var h = '';
+    item.opts.forEach(function (o) {
+      if (o === 'size') {
+        h += '<fieldset><legend>' + t('o.size') + '</legend>' + chips('size', [{ v: 'std', l: t('o.sizeStd') }, { v: 'custom', l: t('o.sizeCustom') }]) + '</fieldset>';
+        if (state.size === 'custom') h += '<div class="row2">' + input('w', t('o.w'), 'number') + input('h', t('o.h'), 'number') + '</div>';
+      }
+      if (o === 'colour') h += '<fieldset><legend>' + t('o.colour') + '</legend>' + chips('colour', COLOURS.map(function (c) { return { v: c.k, l: c[lang], c: c.c }; })) + '</fieldset>';
+      if (o === 'cushion') h += input('cushion', t('o.cushion'), 'text', t('o.cushionPh'));
+      if (o === 'beads') h += '<fieldset><legend>' + t('o.beads') + '</legend>' + chips('beads', [{ v: 'no', l: t('o.no') }, { v: 'yes', l: t('o.yes') }]) + '</fieldset>';
+      if (o === 'type') h += '<fieldset><legend>' + t('o.type') + '</legend>' + chips('type', [{ v: 'wall', l: t('o.wall') }, { v: 'curtain', l: t('o.curtain') }]) + '</fieldset>';
+      if (o === 'dims') h += '<div class="row2">' + input('w', t('o.w'), 'number') + input('h', t('o.h'), 'number') + '</div>';
+      if (o === 'design') h += '<fieldset><legend>' + t('o.design') + '</legend>' + chips('design', [{ v: 'braids', l: t('o.braids') }, { v: 'board', l: t('o.board') }]) + '</fieldset>';
+      if (o === 'name') h += input('name', t('o.name'), 'text', t('o.namePh'));
+      if (o === 'braid') h += input('braid', t('o.braid'), 'text', t('o.braidPh'));
+      if (o === 'diameter') h += input('diameter', t('o.diameter'), 'number');
+    });
+    $('#fields').innerHTML = '<div style="display:flex;flex-direction:column;gap:1.1rem">' + h + '</div>';
+  }
+
+  function message() {
+    var L = [t('msg.hi'), item[lang].name];
+    var c = COLOURS.filter(function (x) { return x.k === state.colour; })[0];
+    item.opts.forEach(function (o) {
+      if (o === 'size') L.push(t('o.size') + ': ' + (state.size === 'custom' ? t('o.sizeCustom') + (state.w || state.h ? ' (' + (state.w || '?') + ' x ' + (state.h || '?') + ' ' + (lang === 'ar' ? 'سم' : 'cm') + ')' : '') : t('o.sizeStd')));
+      if (o === 'colour' && c) L.push(t('o.colour') + ': ' + c[lang]);
+      if (o === 'cushion' && state.cushion) L.push(t('o.cushion') + ': ' + state.cushion);
+      if (o === 'beads') L.push(t('o.beads') + ': ' + t(state.beads === 'yes' ? 'o.yes' : 'o.no'));
+      if (o === 'type') L.push(t('o.type') + ': ' + t(state.type === 'curtain' ? 'o.curtain' : 'o.wall'));
+      if (o === 'dims' && (state.w || state.h)) L.push(t('o.dims') + ': ' + (state.w || '?') + ' x ' + (state.h || '?') + ' ' + (lang === 'ar' ? 'سم' : 'cm'));
+      if (o === 'design') L.push(t('o.design') + ': ' + t(state.design === 'board' ? 'o.board' : 'o.braids'));
+      if (o === 'name' && state.name) L.push(t('o.name') + ': ' + state.name);
+      if (o === 'braid' && state.braid) L.push(t('o.braid') + ': ' + state.braid);
+      if (o === 'diameter' && state.diameter) L.push(t('o.diameter') + ': ' + state.diameter);
+    });
+    var n = $('#notes').value.trim();
+    if (n) L.push(t('msg.notes') + ': ' + n);
+    return L.join('\n');
+  }
+  function refresh() { $('#preview').textContent = message(); }
+
+  $('#custom').addEventListener('change', function (e) {
+    var el = e.target;
+    if (el.type === 'radio') { state[el.name] = el.value; if (el.name === 'size') buildFields(); }
+    refresh();
+  });
+  $('#custom').addEventListener('input', function (e) {
+    var el = e.target;
+    if (el.id && el.id !== 'notes') state[el.id] = el.value.trim();
+    refresh();
+  });
+
+  var toastT;
+  function toast(s) { var el = $('#toast'); el.textContent = s; el.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(function () { el.classList.remove('on'); }, 4200); }
+
+  $('#custom').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var m = message();
+    var win = window.open(IG, '_blank', 'noopener');
+    var done = function (ok) { toast(t(ok ? 'toast.ok' : 'toast.fail')); if (!win) location.href = IG; };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(m).then(function () { done(true); }, function () { done(false); });
+    else done(false);
+  });
+
+  function render() {
+    var d = item[lang];
+    document.title = d.name + ' | Macrame Market';
+    $('#crumbName').textContent = d.name;
+    $('#kicker').textContent = d.kicker;
+    $('#name').textContent = d.name;
+    $('#desc').textContent = d.desc;
+    var pr = $('#price');
+    if (item.price) { pr.textContent = item.price + ' ' + t('egp'); pr.className = 'pprice'; }
+    else { pr.textContent = t('req'); pr.className = 'pprice req'; }
+    $('#facts').innerHTML = item.facts.map(function (f) { return '<div><dt>' + esc(t(f[0])) + '</dt><dd>' + esc(t(f[1])) + '</dd></div>'; }).join('');
+    document.querySelectorAll('[data-t]').forEach(function (el) { el.textContent = t(el.dataset.t); });
+    document.querySelectorAll('[data-ph]').forEach(function (el) { el.placeholder = t(el.dataset.ph); });
+    document.querySelectorAll('#stage img, #thumbs img').forEach(function (i) { i.alt = d.name; });
+    $('#more').innerHTML = ORDER.filter(function (k) { return k !== slug; }).map(function (k) {
+      return '<a href="product.html?p=' + k + '"><div class="ph"><img src="images/' + P[k].photos[0] + '.jpg" alt="" loading="lazy"></div><b>' + esc(P[k][lang].name) + '</b></a>';
+    }).join('');
+    buildFields(); refresh();
+    var b = $('#lang'); b.textContent = lang === 'ar' ? 'English' : 'العربية'; b.lang = lang === 'ar' ? 'en' : 'ar';
+  }
+
+  function setLang(l) {
+    lang = l; html.lang = l; html.dir = l === 'ar' ? 'rtl' : 'ltr';
+    render();
+    try { localStorage.setItem('mm-lang', l); } catch (e) {}
+  }
+
+  // Gallery
+  var ph = item.photos;
+  $('#stage').innerHTML = '<img src="images/' + ph[0] + '.jpg" alt=""' + (item.focus ? ' style="object-position:' + item.focus + '"' : '') + '>';
+  if (ph.length > 1) {
+    $('#thumbs').innerHTML = ph.map(function (p, i) { return '<button type="button" aria-pressed="' + (i === 0) + '" data-i="' + i + '"><img src="images/' + p + '.jpg" alt=""></button>'; }).join('');
+    $('#thumbs').addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      $('#stage img').src = 'images/' + ph[+b.dataset.i] + '.jpg';
+      document.querySelectorAll('#thumbs button').forEach(function (x) { x.setAttribute('aria-pressed', x === b); });
+    });
+  } else { $('#gallery').classList.add('single'); $('#thumbs').remove(); }
+
+  $('#lang').addEventListener('click', function () { setLang(lang === 'ar' ? 'en' : 'ar'); });
+  var q = new URLSearchParams(location.search).get('lang');
+  var start = 'en';
+  if (q === 'ar' || q === 'en') start = q;
+  else { try { if (localStorage.getItem('mm-lang') === 'ar') start = 'ar'; } catch (e) {} }
+  setLang(start);
+})();
+</script>
+</body>
+</html>
